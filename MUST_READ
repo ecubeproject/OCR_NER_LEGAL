@@ -1,0 +1,36 @@
+```
+---
+# One very important instruction is that the app requires precise numpy version to make various deep learning frameworks, pre-trained models and padddle OCR etc. i.e. numpy==1.23.5. 
+# As that is old version,  while installing other packages in requirements.txt through Ubuntu terminal numpy is auto upgraded which breaks compatibility with other libraries. 
+---
+# Here is requirements.tx content
+# paddlepaddle-gpu==2.5.0.post118  # Commented out for CPU only setup
+gradio==5.38.2
+paddleocr==2.6.1.3
+paddlepaddle==2.5.0
+pdf2image==1.17.0
+PyMuPDF==1.20.2
+pytesseract==0.3.10
+pillow==11.3.0
+transformers==4.49.0
+torch==2.7.1
+spacy==3.8.7
+spacy-transformers==1.3.9
+pandas==1.5.3
+opencv-python-headless==4.12.0.88
+huggingface-hub==0.34.1
+---
+# So after creating python 3.10 virtual environment proceed as below:
+(1) Install numpy==1.23.5  FIRST 
+(2) While installing other packages If anything tries to upgrade numpy, immediately uninstall and reinstall numpy.
+```bash
+  pip uninstall numpy -y
+  pip install numpy==1.23.5 --force-reinstall
+(3) Then install above packages (one by one recommended) with --no-deps at the endo of command
+E.g. 
+```bash
+pip install paddleocr==2.6.1.3 --no-deps 
+and so one for all reamining packages
+
+Installing numpy first, and always using --no-deps, means pip will never auto-upgrade numpy later. This is the standard solution for working with PaddleOCR, paddlex, and layoutparser together.
+---
